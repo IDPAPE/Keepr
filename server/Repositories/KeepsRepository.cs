@@ -30,4 +30,35 @@ public class KeepsRepository
 
         return keep;
     }
+    internal List<Keep> GetAllKeeps()
+    {
+        string sql =
+        @"SELECT keeps.*, accounts.* FROM keeps
+        JOIN accounts ON accounts.id = keeps.creatorId;
+        ";
+
+        List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
+        {
+            keep.Creator = profile;
+            return keep;
+        }).ToList();
+        return keeps;
+    }
+
+    internal Keep GetKeepById(int keepId)
+    {
+        string sql =
+        @"
+        SELECT keeps.*, accounts.* FROM keeps
+        JOIN accounts on accounts.id = keeps.creatorId
+        WHERE keeps.id = @keepId;
+        ";
+
+        Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
+        {
+            keep.Creator = profile;
+            return keep;
+        }, new { keepId }).FirstOrDefault();
+        return keep;
+    }
 }
