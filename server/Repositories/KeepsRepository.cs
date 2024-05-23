@@ -61,4 +61,28 @@ public class KeepsRepository
         }, new { keepId }).FirstOrDefault();
         return keep;
     }
+
+    internal Keep UpdateKeep(Keep keepToUpdate)
+    {
+        string sql =
+        @"
+        UPDATE keeps SET
+        name = @Name,
+        description = @Description,
+        img = @Img
+        WHERE keeps.id = @Id;
+
+        SELECT keeps.*, accounts.* FROM keeps
+        JOIN accounts ON accounts.id = keeps.creatorId
+        WHERE keeps.id = @Id
+        ";
+
+        Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
+        {
+            keep.Creator = profile;
+            return keep;
+        }, keepToUpdate).FirstOrDefault();
+
+        return keep;
+    }
 }
