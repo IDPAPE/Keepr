@@ -30,6 +30,7 @@ public class KeepsRepository
 
         return keep;
     }
+
     internal List<Keep> GetAllKeeps()
     {
         string sql =
@@ -84,5 +85,15 @@ public class KeepsRepository
         }, keepToUpdate).FirstOrDefault();
 
         return keep;
+    }
+    internal void DeleteKeep(int keepId)
+    {
+        string sql = "DELETE FROM keeps WHERE keeps.id = @keepId;";
+
+        int rowsAffected = _db.Execute(sql, new { keepId });
+        if (rowsAffected != 1)
+        {
+            throw new Exception("something bad happened during sql delete, check ur code");
+        }
     }
 }

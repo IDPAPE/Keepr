@@ -19,6 +19,7 @@ public class KeepsService
         return keep;
     }
 
+
     internal List<Keep> GetAllKeeps()
     {
         List<Keep> keeps = _repository.GetAllKeeps();
@@ -49,5 +50,15 @@ public class KeepsService
 
         Keep updatedKeep = _repository.UpdateKeep(keepToUpdate);
         return updatedKeep;
+    }
+    internal string DeleteKeep(int keepId, string userId)
+    {
+        Keep keepToDelete = GetKeepById(keepId);
+        if (keepToDelete.CreatorId != userId)
+        {
+            throw new Exception($"cannot delete keep with id: {keepId}, you are not the owner");
+        }
+        _repository.DeleteKeep(keepId);
+        return $"{keepToDelete.Name} was deleted succesfully";
     }
 }
