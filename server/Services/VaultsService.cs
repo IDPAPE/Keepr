@@ -54,4 +54,15 @@ public class VaultsService
 
         return vault;
     }
+
+    internal string DeleteVault(int vaultId, string userId)
+    {
+        Vault vaultToDelete = GetVaultById(vaultId);
+        if (vaultToDelete.CreatorId != userId)
+        {
+            throw new Exception($"Can not delete this, not yours");
+        }
+        string message = _repository.DeleteVault(vaultId);
+        return message;
+    }
 }

@@ -1,6 +1,7 @@
 
 
 
+
 namespace Keepr.Repositories;
 
 public class VaultsRepository
@@ -76,5 +77,17 @@ public class VaultsRepository
         }, vaultToUpdate).FirstOrDefault();
 
         return vault;
+    }
+
+    internal string DeleteVault(int vaultId)
+    {
+        string sql =
+        @"DELETE FROM vaults WHERE vaults.id = @vaultId;";
+        int rowsAffected = _db.Execute(sql, new { vaultId });
+        if (rowsAffected != 1)
+        {
+            throw new Exception("something bad happened during sql delete, check ur code");
+        }
+        return $"Vault was deleted successfully";
     }
 }
