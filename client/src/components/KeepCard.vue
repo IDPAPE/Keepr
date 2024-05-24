@@ -12,9 +12,9 @@ const imgUrl = computed(() => `url(${props.keep.img})`)
 <template>
     <div class="container-fluid d-flex flex-column">
         <div class="row parent">
-            <img :src="keep.img" alt="">
+            <img class="rounded p-0" :src="keep.img" alt="">
             <div class="child">
-                <div class="col px-4 text-light d-flex justify-content-between">
+                <div class="col px-1 text-light d-flex justify-content-between align-items-center">
                     <h3 class="fw-bold text-shadow">{{ keep.name }}</h3>
                     <img class="pfp d-none d-md-block" :src="keep.creator.picture" alt="">
                 </div>
@@ -43,6 +43,10 @@ const imgUrl = computed(() => `url(${props.keep.img})`)
     height: 5dvh;
     aspect-ratio: 1/1;
     border-radius: 50%;
-    filter: drop-shadow(0 0 0.25rem black);
+    filter: drop-shadow(0 0 0.25rem rgb(58, 58, 58));
+}
+
+.rounded {
+    border-radius: 1rem;
 }
 </style>

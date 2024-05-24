@@ -26,9 +26,9 @@ onMounted(() => {
 <template>
   <div class="container-fluid p-md-5 pt-4">
     <section class="row">
-      <div class="col-12 masonry">
+      <div class="col-12 masonry p-0">
         <div v-for="keep in keeps" :key="keep.id">
-          <KeepCard class="card-margin" :keep="keep" />
+          <KeepCard class="card-margin drop-shadow" :keep="keep" />
         </div>
       </div>
     </section>
@@ -36,10 +36,15 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+.drop-shadow {
+  filter: drop-shadow(3px 3px 6px rgb(135, 134, 134));
+}
+
+//classes for small screens
 @media screen and (max-width: 992px) {
   .masonry {
     columns: 2;
-    column-gap: 0rem;
+    column-gap: 1rem;
   }
 
   .card-margin {
@@ -47,10 +52,11 @@ onMounted(() => {
   }
 }
 
+//classes for large screens
 @media screen and (min-width: 992px) {
   .masonry {
     columns: 4;
-    column-gap: 1rem;
+    column-gap: 2rem;
   }
 
   .card-margin {
