@@ -2,12 +2,23 @@
 import { computed } from 'vue';
 import { Keep } from '../models/Keep.js';
 import { AppState } from '../AppState.js';
+import Pop from '../utils/Pop.js';
+import { keepsService } from '../services/KeepsService.js';
+import { Modal } from 'bootstrap';
 
 
 const keep = computed(() => AppState.activeKeep)
 
 async function deleteKeep(keepId) {
-
+    try {
+        const confirmation = await Pop.confirm('Are you sure you want to delete this Keep?')
+        if (confirmation == false) { return }
+        keepsService.deleteKeep(keepId)
+        Modal.getOrCreateInstance('#keepModal').hide()
+    }
+    catch (error) {
+        Pop.error(error);
+    }
 }
 </script>
 
