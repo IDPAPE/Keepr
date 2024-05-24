@@ -1,16 +1,21 @@
 <script setup>
 import { computed } from 'vue';
 import { Keep } from '../models/Keep.js';
-
+import { keepsService } from '../services/KeepsService.js';
 
 const props = defineProps({ keep: { type: Keep, required: true } })
 const imgUrl = computed(() => `url(${props.keep.img})`)
+
+function setActiveKeep(keepId) {
+    keepsService.setActiveKeep(keepId)
+}
 
 </script>
 
 
 <template>
-    <div class="container-fluid d-flex flex-column">
+    <div @click="setActiveKeep(keep.id)" class="container-fluid d-flex flex-column selectable" data-bs-toggle="modal"
+        data-bs-target="#keepModal">
         <div class="row parent">
             <img class="rounded p-0" :src="keep.img" alt="">
             <div class="child">

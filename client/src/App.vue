@@ -12,6 +12,7 @@ import Navbar from './components/Navbar.vue'
   <main>
     <router-view />
   </main>
+  <KeepModal />
 </template>
 
 <style lang="scss">
