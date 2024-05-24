@@ -7,10 +7,12 @@ namespace Keepr.Services;
 public class KeepsService
 {
     private readonly KeepsRepository _repository;
+    private readonly VaultsService _vaultsService;
 
-    public KeepsService(KeepsRepository repository)
+    public KeepsService(KeepsRepository repository, VaultsService vaultsService)
     {
         _repository = repository;
+        _vaultsService = vaultsService;
     }
 
     internal Keep CreateKeep(Keep keepData)
@@ -60,5 +62,12 @@ public class KeepsService
         }
         _repository.DeleteKeep(keepId);
         return $"{keepToDelete.Name} was deleted succesfully";
+    }
+
+    internal List<VaultKeepView> GetKeepsFromVault(int vaultId, string userId)
+    {
+        Vault vault = _vaultsService.GetVaultById(vaultId, userId);
+        List<VaultKeepView> vaultKeepViews = _repository.GetKeepsFromVault(vaultId);
+        return vaultKeepViews;
     }
 }

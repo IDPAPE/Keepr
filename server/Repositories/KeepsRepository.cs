@@ -96,4 +96,24 @@ public class KeepsRepository
             throw new Exception("something bad happened during sql delete, check ur code");
         }
     }
+
+    internal List<VaultKeepView> GetKeepsFromVault(int vaultId)
+    {
+        string sql =
+        @"
+        SELECT vaultKeeps.*, keeps.*, accounts.* FROM vaultKeeps
+        JOIN keeps ON keeps.id = vaultKeeps.keepId
+        JOIN accounts ON accounts.id = vaultKeeps.creatorId
+        WHERE vaultKeeps.vaultId = @vaultId;
+        ";
+
+        List<VaultKeepView> vaultKeeps = _db.Query<VaultKeep, VaultKeepView, Profile, VaultKeepView>(sql, (vaultKeep, keep, profile) =>
+        {
+            keep.VaultKeepId = vaultKeep.Id;
+            keep.CreatorId = vaultKeep.CreatorId;
+            keep.Creator = profile;
+            return keep;
+        }, new { vaultId }).ToList();
+        return vaultKeeps;
+    }
 }
