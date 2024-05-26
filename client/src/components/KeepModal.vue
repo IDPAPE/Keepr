@@ -78,8 +78,8 @@ async function saveToVault() {
                             </div>
 
                             <div class="d-flex align-items-center justify-content-between">
-                                <form @submit.prevent="saveToVault()">
-                                    <select v-model="selectedVaultData.vaultId" class="form-select"
+                                <form @submit.prevent="saveToVault()" class="d-flex w-50">
+                                    <select v-model="selectedVaultData.vaultId" class="form-select me-2"
                                         aria-label="Default select example" default="Add To Vault" required>
                                         <option v-for="vault in AppState.myVaults" :key="vault.id" :value="vault.id">
                                             {{ vault.name }}<small v-if="vault.isPrivate == true">: Private</small>
@@ -87,7 +87,7 @@ async function saveToVault() {
                                     </select>
                                     <button type="submit" class="btn btn-primary rounded-pill">Save</button>
                                 </form>
-                                <h5>{{ keep.creator.name }}</h5>
+                                <h6>{{ keep.creator.name }}</h6>
                             </div>
 
                         </div>
