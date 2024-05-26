@@ -81,8 +81,9 @@ async function saveToVault() {
                                 <form @submit.prevent="saveToVault()">
                                     <select v-model="selectedVaultData.vaultId" class="form-select"
                                         aria-label="Default select example" default="Add To Vault" required>
-                                        <option v-for="vault in myVaults" :key="vault.id" :value="vault.id">{{
-                                            vault.name }}</option>
+                                        <option v-for="vault in AppState.myVaults" :key="vault.id" :value="vault.id">
+                                            {{ vault.name }}<small v-if="vault.isPrivate == true">: Private</small>
+                                        </option>
                                     </select>
                                     <button type="submit" class="btn btn-primary rounded-pill">Save</button>
                                 </form>
