@@ -1,5 +1,6 @@
 
 
+
 namespace Keepr.Services;
 
 public class VaultsService
@@ -64,5 +65,17 @@ public class VaultsService
         }
         string message = _repository.DeleteVault(vaultId);
         return message;
+    }
+
+    internal List<Vault> GetUserVaults(string profileId)
+    {
+        List<Vault> vaults = _repository.GetUserVaults(profileId);
+        return vaults.FindAll(vault => vault.IsPrivate == false);
+    }
+
+    internal List<Vault> GetMyVaults(string profileId)
+    {
+        List<Vault> vaults = _repository.GetMyVaults(profileId);
+        return vaults;
     }
 }

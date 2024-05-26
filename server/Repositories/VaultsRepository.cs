@@ -2,6 +2,7 @@
 
 
 
+
 namespace Keepr.Repositories;
 
 public class VaultsRepository
@@ -89,5 +90,40 @@ public class VaultsRepository
             throw new Exception("something bad happened during sql delete, check ur code");
         }
         return $"Vault was deleted successfully";
+    }
+
+    internal List<Vault> GetUserVaults(string profileId)
+    {
+        string sql =
+        @"
+        SELECT vaults.*, accounts.* FROM vaults
+        JOIN accounts ON vaults.creatorId = accounts.id
+        WHERE vaults.creatorId = @profileId;
+        ";
+
+        List<Vault> vaults = _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
+        {
+            vault.Creator = profile;
+            return vault;
+        }, new { profileId }).ToList();
+
+        return vaults;
+    }
+
+    internal List<Vault> GetMyVaults(string profileId)
+    {
+        string sql =
+        @"
+        SELECT vaults.*, accounts.* FROM vaults
+        JOIN accounts ON vaults.creatorId = accounts.id
+        WHERE vaults.creatorId = @profileId;
+        ";
+
+        List<Vault> vaults = _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
+        {
+            vault.Creator = profile;
+            return vault;
+        }, new { profileId }).ToList();
+        return vaults;
     }
 }
