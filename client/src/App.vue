@@ -1,8 +1,22 @@
 <script setup>
+import { onMounted } from 'vue';
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import { vaultsService } from './services/VaultsService.js';
+import Pop from './utils/Pop.js';
 
+async function getMyVaults() {
+  try {
+    const myVaults = await vaultsService.getMyVaults()
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+}
 
+// onMounted(() => {
+//   getMyVaults()
+// })
 </script>
 
 <template>

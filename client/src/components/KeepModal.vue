@@ -1,13 +1,19 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { Keep } from '../models/Keep.js';
 import { AppState } from '../AppState.js';
 import Pop from '../utils/Pop.js';
 import { keepsService } from '../services/KeepsService.js';
 import { Modal } from 'bootstrap';
+import { vaultsService } from '../services/VaultsService.js';
 
-
+const myVaults = computed(() => AppState.myVaults)
 const keep = computed(() => AppState.activeKeep)
+
+const selectedVaultData = ref({
+    vaultId: 0,
+    keepId: 0
+})
 
 async function deleteKeep(keepId) {
     try {
@@ -18,6 +24,20 @@ async function deleteKeep(keepId) {
     }
     catch (error) {
         Pop.error(error);
+        console.error(error)
+    }
+}
+
+async function saveToVault() {
+    try {
+        // console.log('asdf')
+        const confirmation = await Pop.confirm('Add this keep to vault?')
+        if (confirmation == false) { return }
+        vaultsService.saveToVault(selectedVaultData.value)
+    }
+    catch (error) {
+        Pop.error(error);
+        console.error(error)
     }
 }
 </script>
@@ -58,7 +78,14 @@ async function deleteKeep(keepId) {
                             </div>
 
                             <div class="d-flex align-items-center justify-content-between">
-                                <h4>save to my valuts</h4>
+                                <form @submit.prevent="saveToVault()">
+                                    <select v-model="selectedVaultData.vaultId" class="form-select"
+                                        aria-label="Default select example" default="Add To Vault" required>
+                                        <option v-for="vault in myVaults" :key="vault.id" :value="vault.id">{{
+                                            vault.name }}</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary rounded-pill">Save</button>
+                                </form>
                                 <h5>{{ keep.creator.name }}</h5>
                             </div>
 
