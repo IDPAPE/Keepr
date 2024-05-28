@@ -1,13 +1,30 @@
 <script setup>
 import { ref } from 'vue';
+import Pop from '../utils/Pop.js';
+import { keepsService } from '../services/KeepsService.js';
 
 
 const keepData = ref({
     name: '',
     img: '',
     description: '',
-    creatorId: ''
+    // creatorId: ''
 })
+
+async function createKeep() {
+    try {
+        keepsService.createKeep(keepData.value)
+        keepData.value = {
+            name: '',
+            img: '',
+            description: '',
+            // creatorId: ''
+        }
+    }
+    catch (error) {
+        Pop.error(error);
+    }
+}
 
 </script>
 
@@ -28,7 +45,7 @@ const keepData = ref({
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form @submit.prevent="">
+                    <form @submit.prevent="createKeep()">
                         <div class="form-floating mb-3 text-grey">
                             <input v-model="keepData.name" type="text" class="form-control " id="name" placeholder="">
                             <label class="" for="name">Keep Name</label>

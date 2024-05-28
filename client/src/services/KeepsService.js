@@ -3,6 +3,13 @@ import { Keep } from "../models/Keep.js"
 import { api } from "./AxiosService.js"
 
 class KeepsService{
+    async createKeep(keepData) {
+        // keepData.creatorId = AppState.account.id
+        const response = await api.post('api/keeps', keepData)
+        console.log('create keep response', response.data)
+        AppState.keeps.push(new Keep(response.data))
+        AppState.activeKeeps.push(new Keep(response.data))
+    }
     async getAllKeeps() {
         const response = await api.get('api/keeps')
         AppState.keeps = response.data.map(keep => new Keep(keep))
