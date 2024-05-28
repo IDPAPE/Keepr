@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js"
 import { Vault } from "../models/Vault.js"
+import { router } from "../router.js"
 import { api } from "./AxiosService.js"
 
 class VaultsService{
@@ -27,6 +28,15 @@ class VaultsService{
         AppState.activeVaults = null
         const response = await api.get(`api/profiles/${profileId}/vaults`)
         AppState.activeVaults = response.data
+    }
+
+    async deleteVault(vaultId) {
+        const indexToDelete = AppState.myVaults.findIndex(vault => vault.id == vaultId)
+        if (indexToDelete == -1){
+            throw new Error(`could not find ${vaultId} in myVaults, check ur code`)
+        }
+        await api.delete(`api/vaults/${vaultId}`)
+        AppState.myVaults.splice(indexToDelete, 1)
     }
 }
 

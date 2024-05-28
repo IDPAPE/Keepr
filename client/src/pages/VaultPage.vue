@@ -35,6 +35,19 @@ async function getVaultKeeps() {
     }
 }
 
+async function deleteVault(vaultId) {
+    try {
+        const confirmation = await Pop.confirm('are you sure you want to delete this vault?')
+        if (confirmation == false) { return }
+        await vaultsService.deleteVault(vaultId)
+        router.push({ name: 'Profile', params: { profileId: AppState.account?.id } })
+    }
+    catch (error) {
+        Pop.error(error);
+        console.error(error)
+    }
+}
+
 onBeforeMount(() => {
     getActiveVault()
     getVaultKeeps()
@@ -45,7 +58,6 @@ onBeforeMount(() => {
 
 <template>
     <div v-if="vault" class="container">
-
         <div class="row justify-content-center">
             <div class="col-md-4 rounded card d-flex drop-shadow mt-4">
                 <div class="row flex-grow-1"></div>
@@ -68,8 +80,8 @@ onBeforeMount(() => {
                         </h5>
                     </div>
                     <div class="col-4 text-end">
-                        <p v-if="account.id == vault.creatorId" role="button" title="Delete this Keep"
-                            class="fs-2 text-danger mdi mdi-delete-circle-outline"></p>
+                        <p @click="deleteVault(vault.id)" v-if="account && account.id == vault.creatorId" role="button"
+                            title="Delete this Keep" class="fs-2 text-danger mdi mdi-delete-circle-outline"></p>
                     </div>
                 </div>
             </div>
