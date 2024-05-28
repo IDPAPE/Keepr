@@ -3,7 +3,7 @@ import { useRoute } from 'vue-router';
 import { router } from '../router.js';
 import Pop from '../utils/Pop.js';
 import { vaultsService } from '../services/VaultsService.js';
-import { computed, onBeforeMount, onMounted, ref } from 'vue';
+import { computed, onBeforeMount, onMounted, onUnmounted, ref } from 'vue';
 import { AppState } from '../AppState.js';
 import { keepsService } from '../services/KeepsService.js';
 import KeepCard from '../components/KeepCard.vue';
@@ -12,7 +12,7 @@ import KeepCard from '../components/KeepCard.vue';
 const route = useRoute()
 const vault = computed(() => AppState.activeVault)
 const account = computed(() => AppState.account)
-// const imgUrl = `url(${vault.value.img})`
+const imgUrl = computed(() => `url(${vault.value?.img})`)
 const keeps = computed(() => AppState.activeKeeps)
 
 async function getActiveVault() {
@@ -35,10 +35,11 @@ async function getVaultKeeps() {
     }
 }
 
-onMounted(() => {
+onBeforeMount(() => {
     getActiveVault()
     getVaultKeeps()
 })
+
 </script>
 
 

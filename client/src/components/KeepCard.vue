@@ -21,7 +21,9 @@ function setActiveKeep(keepId) {
             <div class="child">
                 <div class="col px-1 text-light d-flex justify-content-between align-items-center">
                     <h3 class="fw-bold text-shadow">{{ keep.name }}</h3>
-                    <img class="pfp d-none d-md-block" :src="keep.creator.picture" alt="">
+                    <RouterLink :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
+                        <img class="pfp d-none d-md-block" :src="keep.creator.picture" alt="">
+                    </RouterLink>
                 </div>
             </div>
         </div>

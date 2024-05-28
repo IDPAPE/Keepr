@@ -25,6 +25,7 @@ class KeepsService{
     }
     
     async getVaultKeeps(vaultId){
+        AppState.activeKeeps = []
         const response = await api.get(`api/vaults/${vaultId}/keeps`)
         console.log('vault keeps response', response.data)
         AppState.activeKeeps = response.data.map(keep => new Keep(keep))

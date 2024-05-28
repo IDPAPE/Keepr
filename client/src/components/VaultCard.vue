@@ -49,4 +49,8 @@ const imgUrl = `url(${props.vault.img})`
 .text-shadow {
     text-shadow: 2px 2px 4px black;
 }
+
+.drop-shadow {
+    filter: drop-shadow(3px 3px 6px rgb(135, 134, 134));
+}
 </style>
