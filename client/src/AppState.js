@@ -12,6 +12,9 @@ export const AppState = reactive({
   /**@type {Keep[]} */
   keeps: [],
 
+  /**@type {Keep[]} */
+  activeKeeps: [],
+
   /**@type {Keep} */
   activeKeep: null,
 

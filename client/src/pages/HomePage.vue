@@ -62,6 +62,5 @@ onMounted(() => {
   .card-margin {
     margin-bottom: 2rem;
   }
-
 }
 </style>

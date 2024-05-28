@@ -24,5 +24,10 @@ class KeepsService{
         AppState.keeps.splice(indexToDelete, 1)
     }
     
+    async getVaultKeeps(vaultId){
+        const response = await api.get(`api/vaults/${vaultId}/keeps`)
+        console.log('vault keeps response', response.data)
+        AppState.activeKeeps = response.data.map(keep => new Keep(keep))
+    }
 }
 export const keepsService = new KeepsService()

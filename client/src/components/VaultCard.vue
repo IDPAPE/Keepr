@@ -1,5 +1,7 @@
 <script setup>
 import { Vault } from '../models/Vault.js';
+import { vaultsService } from '../services/VaultsService.js';
+import Pop from '../utils/Pop.js';
 
 
 const props = defineProps({ vault: { type: Vault, required: true } })
