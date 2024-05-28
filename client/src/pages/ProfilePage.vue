@@ -59,7 +59,7 @@ onMounted(() => {
 
 <template>
     <div class="about container">
-        <div v-if="profile">
+        <div v-if="profile && profileVaults && account">
             <section class="row text-center parent">
                 <img class="hero-img" :src="profile.coverImg" alt="">
                 <div class="child">
@@ -134,6 +134,8 @@ onMounted(() => {
     height: 20dvh;
     aspect-ratio: 1/1;
     border-radius: 50%;
+    object-fit: cover;
+    object-position: top
 }
 
 .drop-shadow {

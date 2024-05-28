@@ -5,7 +5,7 @@ import { keepsService } from '../services/KeepsService.js';
 import { AppState } from '../AppState.js';
 import KeepCard from '../components/KeepCard.vue';
 
-const keeps = computed(() => AppState.keeps)
+const keeps = computed(() => AppState.activeKeeps)
 
 async function getAllKeeps() {
   try {

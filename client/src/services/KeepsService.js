@@ -7,28 +7,27 @@ class KeepsService{
         // keepData.creatorId = AppState.account.id
         const response = await api.post('api/keeps', keepData)
         console.log('create keep response', response.data)
-        AppState.keeps.push(new Keep(response.data))
         AppState.activeKeeps.push(new Keep(response.data))
     }
     async getAllKeeps() {
         const response = await api.get('api/keeps')
-        AppState.keeps = response.data.map(keep => new Keep(keep))
+        AppState.activeKeeps = response.data.map(keep => new Keep(keep))
         console.log('Appstate keeps', AppState.keeps)
     }
     
     async setActiveKeep(keepId){
-        const keep = AppState.keeps.find(keep => keep.id == keepId)
+        const keep = AppState.activeKeeps.find(keep => keep.id == keepId)
         AppState.activeKeep = keep
     }
 
     async deleteKeep(keepId) {
-        const indexToDelete = AppState.keeps.findIndex(keep => keep.id == keepId)
+        const indexToDelete = AppState.activeKeeps.findIndex(keep => keep.id == keepId)
         if(indexToDelete == -1)
             {
                 throw new Error('find index failed')
             }
         await api.delete(`api/keeps/${keepId}`)
-        AppState.keeps.splice(indexToDelete, 1)
+        AppState.activeKeeps.splice(indexToDelete, 1)
     }
     
     async getVaultKeeps(vaultId){
