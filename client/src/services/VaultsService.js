@@ -4,6 +4,11 @@ import { router } from "../router.js"
 import { api } from "./AxiosService.js"
 
 class VaultsService{
+    async createVault(vaultData) {
+        const response = await api.post('api/vaults', vaultData)
+        console.log('new vault response', response.data)
+        AppState.myVaults.push(new Vault(response.data))
+    }
     
     async getMyVaults(){
         const response = await api.get('account/vaults')
