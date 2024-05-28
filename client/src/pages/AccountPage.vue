@@ -10,16 +10,21 @@ const myVaults = computed(() => AppState.myVaults)
 <template>
   <div class="about container">
     <div v-if="account">
-      <section class="row mt-4 text-center">
-        <div class="col-12">
-          <img class="hero-img" :src="account.coverImg" alt="">
-        </div>
-        <div class="col">
+      <section class="row text-center parent">
+        <img class="hero-img" :src="account.coverImg" alt="">
+        <div class="child">
           <img class="pfp" :src="account.picture" alt="" />
           <h1>{{ account.name }}</h1>
           <p>{{ myVaults.length }} Vaults | 0 Keeps</p>
           <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditAccountModal">Edit
             Account</button>
+        </div>
+        <div class="col">
+          <!-- <img class="pfp" :src="account.picture" alt="" />
+          <h1>{{ account.name }}</h1>
+          <p>{{ myVaults.length }} Vaults | 0 Keeps</p>
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditAccountModal">Edit
+            Account</button> -->
         </div>
       </section>
       <section class="row">
@@ -39,6 +44,17 @@ const myVaults = computed(() => AppState.myVaults)
 </template>
 
 <style scoped lang="scss">
+.parent {
+  position: relative;
+  margin-bottom: 15rem;
+}
+
+.child {
+  position: absolute;
+  top: 17rem;
+  right: 0;
+}
+
 .pfp {
   height: 20dvh;
   aspect-ratio: 1/1;
