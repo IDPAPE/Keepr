@@ -12,6 +12,14 @@ class AccountService {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
+
+  async updateAccountInfo(accountInfo){
+    accountInfo.email = AppState.account.email
+    const response = await api.put('/account', accountInfo)
+    console.log('update account response', response.data)
+    AppState.account = new Account(response.data)
+  }
+  
 }
 
 export const accountService = new AccountService()
