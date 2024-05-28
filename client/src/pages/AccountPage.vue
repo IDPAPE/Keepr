@@ -1,10 +1,26 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState.js';
+import Pop from '../utils/Pop.js';
+import { keepsService } from '../services/KeepsService.js';
 
 const account = computed(() => AppState.account)
 const myVaults = computed(() => AppState.myVaults)
+const myKeeps = computed(() => AppState.activeKeeps)
 
+async function getMyKeeps() {
+  try {
+    keepsService.getProfileKeeps(account.value.id)
+  }
+  catch (error) {
+    Pop.error(error);
+    console.error(error)
+  }
+}
+
+onMounted(() => {
+  getMyKeeps()
+})
 </script>
 
 <template>
@@ -27,14 +43,30 @@ const myVaults = computed(() => AppState.myVaults)
             Account</button> -->
         </div>
       </section>
+
       <section class="row">
-        <div class="col-12">
-          <h2>Vaults</h2>
+        <div class="col-12 mb-3">
+          <h2 class="fs-1">Vaults</h2>
+          <hr />
         </div>
         <div v-for="vault in myVaults" :key="vault.id" class="col-md-3 col-6">
           <VaultCard :vault="vault" />
         </div>
+
       </section>
+
+      <section v-if="myKeeps" class="row">
+        <div class="col-12 mb-3">
+          <h2 class="fs-1">Keeps</h2>
+          <hr />
+        </div>
+        <div class="col-12 masonry p-0">
+          <div v-for="keep in myKeeps" :key="keep.id">
+            <KeepCard class="card-margin drop-shadow" :keep="keep" />
+          </div>
+        </div>
+      </section>
+
     </div>
     <div v-else>
       <h1>Loading... <i class="mdi mdi-loading mdi-spin"></i></h1>
@@ -74,5 +106,28 @@ const myVaults = computed(() => AppState.myVaults)
   object-position: center;
   height: 40dvh;
   width: 100%;
+}
+
+@media screen and (max-width: 992px) {
+  .masonry {
+    columns: 2;
+    column-gap: 1rem;
+  }
+
+  .card-margin {
+    margin-bottom: 1rem;
+  }
+}
+
+//classes for large screens
+@media screen and (min-width: 992px) {
+  .masonry {
+    columns: 4;
+    column-gap: 2rem;
+  }
+
+  .card-margin {
+    margin-bottom: 2rem;
+  }
 }
 </style>

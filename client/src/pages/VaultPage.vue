@@ -47,7 +47,7 @@ onBeforeMount(() => {
     <div v-if="vault" class="container">
 
         <div class="row justify-content-center">
-            <div class="col-4 rounded card d-flex drop-shadow mt-4">
+            <div class="col-md-4 rounded card d-flex drop-shadow mt-4">
                 <div class="row flex-grow-1"></div>
                 <div class="row text-light text-shadow text-center">
                     <h1>{{ vault.name }}</h1>
@@ -56,9 +56,12 @@ onBeforeMount(() => {
             </div>
         </div>
         <div class="row justify-content-center mt-2">
-            <div class="col-4">
+            <div class="col-md-4 col-12">
                 <div class="row align-items-center">
                     <div class="col-4">
+                        <p v-if="vault.isPrivate == true" class="fs-3 text-warning mdi mdi-lock"
+                            title="vault is private">
+                        </p>
                     </div>
                     <div class="col-4">
                         <h5 class="rounded rounded-pill bg-primary-subtle p-2 text-center">Keeps: {{ keeps.length }}
@@ -72,6 +75,10 @@ onBeforeMount(() => {
             </div>
         </div>
         <div class="row">
+            <div class="col-12">
+                <h2>Keeps</h2>
+                <hr />
+            </div>
             <div class="col-12 masonry p-0">
                 <div v-for="keep in keeps" :key="keep.id">
                     <KeepCard class="card-margin drop-shadow" :keep="keep" />

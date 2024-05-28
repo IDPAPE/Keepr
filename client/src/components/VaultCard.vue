@@ -19,8 +19,8 @@ const imgUrl = `url(${props.vault.img})`
 
             </div>
             <div class="row ">
-                <div class="col m-1 rounded p-2 d-flex justify-content-between">
-                    <h5 class="fw-bold m-0 text-shadow">
+                <div class="col m-1 rounded p-2 d-flex justify-content-between text-shadow">
+                    <h5 class="fw-bold m-0">
                         {{ vault.name }}
                     </h5>
                     <h5>

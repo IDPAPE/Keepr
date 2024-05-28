@@ -30,5 +30,12 @@ class KeepsService{
         console.log('vault keeps response', response.data)
         AppState.activeKeeps = response.data.map(keep => new Keep(keep))
     }
+
+    async getProfileKeeps(profileId){
+        AppState.activeKeeps = []
+        const response = await api.get(`api/profiles/${profileId}/keeps`)
+        AppState.activeKeeps = response.data.map(keep => new Keep (keep))
+        console.log('account keeps', AppState.activeKeeps)
+    }
 }
 export const keepsService = new KeepsService()
