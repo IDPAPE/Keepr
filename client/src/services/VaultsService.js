@@ -22,6 +22,12 @@ class VaultsService{
         console.log('active vault response', response.data)
         AppState.activeVault = new Vault(response.data)
     }
+
+    async getProfileVaults(profileId){
+        AppState.activeVaults = null
+        const response = await api.get(`api/profiles/${profileId}/vaults`)
+        AppState.activeVaults = response.data
+    }
 }
 
 export const vaultsService = new VaultsService()
