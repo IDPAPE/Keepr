@@ -16,6 +16,10 @@ class VaultsService{
         const response = await api.post(`api/vaultkeeps`, selectedVaultData)
         console.log('saving keep response data',response.data)
     }
+    async getActiveVault(vaultId) {
+        const response = await api.get(`api/vaults/${vaultId}`)
+        console.log('active vault response', response.data)
+    }
 }
 
 export const vaultsService = new VaultsService()

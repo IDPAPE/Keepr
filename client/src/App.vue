@@ -27,6 +27,7 @@ async function getMyVaults() {
     <router-view />
   </main>
   <KeepModal />
+  <VaultModal />
 </template>
 
 <style lang="scss">
