@@ -28,6 +28,8 @@ async function getMyVaults() {
   </main>
   <KeepModal />
   <VaultModal />
+  <CreateKeepModal />
+  <CreateVaultModal />
 </template>
 
 <style lang="scss">

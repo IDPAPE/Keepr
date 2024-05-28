@@ -31,18 +31,15 @@ function toggleTheme() {
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link>
+          <p class="text-light mb-0 me-3 selectable" data-bs-toggle="modal" data-bs-target="#createKeepModal">Create
+            Keep</p>
+        </li>
+        <li>
+          <p class="text-light mb-0 selectable" data-bs-toggle="modal" data-bs-target="#createVaultModal">Create Vault
+          </p>
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
-      <div>
-        <button class="btn text-light" @click="toggleTheme"
-          :title="`Enable ${theme == 'light' ? 'dark' : 'light'} theme.`">
-          <i class="mdi" :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i>
-        </button>
-      </div>
       <Login />
     </div>
   </nav>

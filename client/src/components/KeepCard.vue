@@ -1,28 +1,37 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, onUnmounted } from 'vue';
 import { Keep } from '../models/Keep.js';
 import { keepsService } from '../services/KeepsService.js';
+import { Modal } from 'bootstrap';
 
 const props = defineProps({ keep: { type: Keep, required: true } })
 const imgUrl = computed(() => `url(${props.keep.img})`)
 
 function setActiveKeep(keepId) {
     keepsService.setActiveKeep(keepId)
+    Modal.getOrCreateInstance('#keepModal').show()
 }
+
+function closeModal() {
+    Modal.getOrCreateInstance('#keepModal').hide()
+}
+
+onUnmounted(() => {
+    closeModal()
+})
 
 </script>
 
 
 <template>
-    <div @click="setActiveKeep(keep.id)" class="container-fluid d-flex flex-column selectable" data-bs-toggle="modal"
-        data-bs-target="#keepModal">
+    <div @click="setActiveKeep(keep.id)" class="container-fluid d-flex flex-column selectable">
         <div class="row parent">
             <img class="rounded p-0" :src="keep.img" alt="">
             <div class="child">
                 <div class="col px-1 text-light d-flex justify-content-between align-items-center">
                     <h3 class="fw-bold text-shadow">{{ keep.name }}</h3>
-                    <RouterLink :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
-                        <img class="pfp d-none d-md-block" :src="keep.creator.picture" alt="">
+                    <RouterLink @click.stop :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
+                        <img @click="closeModal()" class="pfp d-none d-md-block" :src="keep.creator.picture" alt="">
                     </RouterLink>
                 </div>
             </div>
@@ -51,6 +60,8 @@ function setActiveKeep(keepId) {
     aspect-ratio: 1/1;
     border-radius: 50%;
     filter: drop-shadow(0 0 0.25rem rgb(58, 58, 58));
+    object-fit: cover;
+    object-position: top;
 }
 
 .rounded {

@@ -6,6 +6,7 @@ import { keepsService } from '../services/KeepsService.js';
 import { vaultsService } from '../services/VaultsService.js';
 import { useRoute } from 'vue-router';
 import { profilesService } from '../services/ProfilesService.js';
+import { Modal } from 'bootstrap';
 
 const route = useRoute()
 const account = computed(() => AppState.account)
@@ -44,7 +45,12 @@ async function getProfileVaults() {
     }
 }
 
+function clearModal() {
+    Modal.getOrCreateInstance('#keepModal').hide()
+}
+
 onMounted(() => {
+    clearModal()
     getProfileKeeps()
     getProfileVaults()
     getActiveProfile()
@@ -79,12 +85,12 @@ onMounted(() => {
                     <hr />
                 </div>
 
-                <div v-if="profile.id == account.id" class="d-flex">
+                <div v-if="profile.id == account.id" class="d-flex row">
                     <div v-for="vault in myVaults" :key="vault.id" class="col-md-3 col-6 p-2">
                         <VaultCard :vault="vault" />
                     </div>
                 </div>
-                <div v-else>
+                <div v-else class="d-flex row">
                     <div v-for="vault in profileVaults" :key="vault.id" class="col-md-3 col-6 p-2">
                         <VaultCard :vault="vault" />
                     </div>
@@ -109,6 +115,7 @@ onMounted(() => {
         </div>
     </div>
     <EditAccountModal />
+    <KeepModal />
 </template>
 
 <style scoped lang="scss">
