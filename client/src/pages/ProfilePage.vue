@@ -102,7 +102,7 @@ onMounted(() => {
                     <h2 class="fs-1">Keeps</h2>
                     <hr />
                 </div>
-                <div class="col-12 masonry p-0">
+                <div class="col-12 masonry ">
                     <div v-for="keep in profileKeeps" :key="keep.id">
                         <KeepCard class="card-margin drop-shadow" :keep="keep" />
                     </div>

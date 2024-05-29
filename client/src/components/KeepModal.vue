@@ -61,10 +61,10 @@ function closeModal() {
             <div class="modal-content">
                 <div v-if="AppState.activeKeep" class="modal-body container-fluid p-0">
                     <section class="row">
-                        <div class="col-6">
-                            <img class="w-100 rounded rounded-end-0" :src="keep.img" alt="">
+                        <div class="col-lg-6 col-12">
+                            <img class=" keep-img img-rounded" :src="keep.img" alt="keep image">
                         </div>
-                        <div class="col-6 d-flex flex-column justify-content-between p-3 px-5 text-center">
+                        <div class="col-lg-6 col-12 d-flex flex-column justify-content-between p-3 px-5 text-center">
 
                             <div class="d-flex align-items-center justify-content-between">
                                 <p @click="deleteKeep(keep.id)" v-if="keep.creatorId == AppState.account?.id"
@@ -79,7 +79,7 @@ function closeModal() {
                                     name="close modal" title="close modal"></button>
                             </div>
 
-                            <div class="px-5">
+                            <div class="px-lg-5 my-4 my-lg-0">
                                 <h2 class="fw-bold">{{ keep.name }}</h2>
                                 <p class="text-start">{{ keep.description }}</p>
                             </div>
@@ -124,5 +124,26 @@ function closeModal() {
     filter: drop-shadow(0 0 0.25rem rgb(58, 58, 58));
     object-fit: cover;
     object-position: top;
+}
+
+.keep-img {
+    object-fit: cover;
+    object-position: center;
+    max-width: 100%;
+    height: 100%;
+}
+
+//classes for small screens
+@media screen and (max-width: 992px) {
+    .img-rounded {
+        border-radius: 0.375rem 0.375rem 0rem 0rem;
+    }
+}
+
+//classes for large screens
+@media screen and (min-width: 992px) {
+    .img-rounded {
+        border-radius: 0.375rem 0rem 0rem 0.375rem
+    }
 }
 </style>

@@ -26,7 +26,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container-fluid p-md-5 pt-4">
+  <div class="container-fluid p-md-5 p-4 pt-4">
     <section class="row">
       <div class="col-12 masonry p-0">
         <div v-for="keep in keeps" :key="keep.id">

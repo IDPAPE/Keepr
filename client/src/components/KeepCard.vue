@@ -58,7 +58,7 @@ onUnmounted(() => {
 }
 
 .pfp {
-    height: 5dvh;
+    height: 4dvh;
     aspect-ratio: 1/1;
     border-radius: 50%;
     filter: drop-shadow(0 0 0.25rem rgb(58, 58, 58));
