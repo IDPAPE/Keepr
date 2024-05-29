@@ -14,12 +14,21 @@ const accountInfoData = ref({
 async function updateAccountInfo() {
     try {
         accountService.updateAccountInfo(accountInfoData.value)
+        accountInfoData.value = {
+            coverImg: '',
+            picture: '',
+            name: '',
+            email: ''
+        }
+        Pop.success('Account Info Updated Successfully')
     }
     catch (error) {
         Pop.toast('could not update user info', 'error');
         console.error(error)
     }
 }
+
+
 
 </script>
 

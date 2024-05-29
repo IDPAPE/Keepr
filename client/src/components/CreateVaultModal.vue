@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import Pop from '../utils/Pop.js';
 import { vaultsService } from '../services/VaultsService.js';
 
@@ -14,17 +14,23 @@ const vaultData = ref({
 async function createVault() {
     try {
         await vaultsService.createVault(vaultData.value)
-        vaultData.value = {
-            name: '',
-            description: '',
-            isPrivate: false,
-            img: ''
-        }
+        clearVaultData()
+        Pop.success("Vault Successfully Created")
     }
     catch (error) {
         Pop.error(error);
     }
+
 }
+function clearVaultData() {
+    vaultData.value = {
+        name: '',
+        description: '',
+        isPrivate: false,
+        img: ''
+    }
+}
+
 </script>
 
 
@@ -46,16 +52,18 @@ async function createVault() {
                 <div class="modal-body">
                     <form @submit.prevent="createVault()">
                         <div class="form-floating mb-3 text-grey">
-                            <input v-model="vaultData.name" type="text" class="form-control " id="name" placeholder="">
+                            <input v-model="vaultData.name" type="text" class="form-control " id="name" placeholder=""
+                                required minlength="1" maxlength="255">
                             <label class="" for="name">Vault Name</label>
                         </div>
                         <div class="form-floating mb-3 text-grey">
-                            <input v-model="vaultData.img" type="url" class="form-control" id="img" placeholder="">
+                            <input v-model="vaultData.img" type="url" class="form-control" id="img" placeholder=""
+                                required>
                             <label for="img">Vault Image Url</label>
                         </div>
                         <div class="form-floating mb-3 text-grey">
                             <textarea v-model="vaultData.description" type="url" class="form-control textarea-height"
-                                id="name" placeholder=""></textarea>
+                                id="name" placeholder="" required minlength="1" maxlength="1000"></textarea>
                             <label for="name">Vault Description</label>
                         </div>
                         <div class="row align-items-center">
