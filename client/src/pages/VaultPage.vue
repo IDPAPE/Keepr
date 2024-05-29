@@ -20,8 +20,12 @@ async function getActiveVault() {
         await vaultsService.getActiveVault(route.params.vaultId)
     }
     catch (error) {
+        if (error.response.data.includes('Could not find vault bad Id')) {
+            router.push({ name: 'Home' })
+        }
         Pop.error(error);
         console.error(error)
+
     }
 }
 
