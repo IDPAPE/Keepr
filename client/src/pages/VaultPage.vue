@@ -13,7 +13,7 @@ const route = useRoute()
 const vault = computed(() => AppState.activeVault)
 const account = computed(() => AppState.account)
 const imgUrl = computed(() => `url(${vault.value?.img})`)
-const keeps = computed(() => AppState.activeKeeps)
+const keeps = computed(() => AppState.vaultKeeps)
 
 async function getActiveVault() {
     try {
@@ -41,6 +41,18 @@ async function deleteVault(vaultId) {
         if (confirmation == false) { return }
         await vaultsService.deleteVault(vaultId)
         router.push({ name: 'Profile', params: { profileId: AppState.account?.id } })
+    }
+    catch (error) {
+        Pop.error(error);
+        console.error(error)
+    }
+}
+
+async function removeKeepFromVault(vaultKeepId) {
+    try {
+        const confirmation = await Pop.confirm('are you sure you want to remove this keep from the vault?')
+        if (confirmation == false) { return }
+        await keepsService.removeKeepFromVault(vaultKeepId)
     }
     catch (error) {
         Pop.error(error);
@@ -92,8 +104,10 @@ onBeforeMount(() => {
                 <hr />
             </div>
             <div class="col-12 masonry p-0">
-                <div v-for="keep in keeps" :key="keep.id">
+                <div class="parent" v-for="keep in keeps" :key="keep.id">
                     <KeepCard class="card-margin drop-shadow" :keep="keep" />
+                    <button @click="removeKeepFromVault(keep.vaultKeepId)" class="btn btn-danger child"><i
+                            class="mdi mdi-close"></i></button>
                 </div>
             </div>
         </div>
@@ -104,6 +118,16 @@ onBeforeMount(() => {
 
 
 <style lang="scss" scoped>
+.parent {
+    position: relative;
+}
+
+.child {
+    position: absolute;
+    top: 0rem;
+    right: 0;
+}
+
 .card {
     height: 20dvh;
     background-image: v-bind(imgUrl);

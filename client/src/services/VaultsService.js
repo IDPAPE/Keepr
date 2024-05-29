@@ -21,6 +21,7 @@ class VaultsService{
         console.log('saving to vault body:', selectedVaultData)
         const response = await api.post(`api/vaultkeeps`, selectedVaultData)
         console.log('saving keep response data',response.data)
+        AppState.activeKeep.kept ++
     }
     async getActiveVault(vaultId) {
         AppState.activeVault = null
