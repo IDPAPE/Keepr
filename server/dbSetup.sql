@@ -47,3 +47,17 @@ CREATE TABLE vaultKeeps (
     vaultId INT NOT NULL,
     creatorId VARCHAR(255) NOT NULL
 );
+
+UPDATE keeps SET views = @views WHERE keeps.id = 1;
+
+SELECT keeps.*, COUNT(vaultKeeps.id) AS kept, accounts.*
+FROM
+    keeps
+    JOIN accounts ON accounts.id = keeps.creatorId
+    LEFT JOIN vaultKeeps ON vaultKeeps.keepId = keeps.id
+WHERE
+    keeps.id = 1
+GROUP BY (keeps.id)
+ORDER By keeps.createdAt;
+
+UPDATE keeps SET views = 33 WHERE keeps.id = 1;

@@ -5,6 +5,7 @@ namespace Keepr.Services;
 public class VaultKeepsService
 {
     private readonly VaultKeepsRepository _repository;
+    private readonly KeepsService _keepsService;
 
     public VaultKeepsService(VaultKeepsRepository repository)
     {
