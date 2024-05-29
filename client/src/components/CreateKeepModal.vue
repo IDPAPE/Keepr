@@ -20,6 +20,7 @@ async function createKeep() {
             description: '',
             // creatorId: ''
         }
+        Pop.success('Keep Successfully Created')
     }
     catch (error) {
         Pop.error(error);
@@ -47,16 +48,18 @@ async function createKeep() {
                 <div class="modal-body">
                     <form @submit.prevent="createKeep()">
                         <div class="form-floating mb-3 text-grey">
-                            <input v-model="keepData.name" type="text" class="form-control " id="name" placeholder="">
+                            <input v-model="keepData.name" type="text" class="form-control " id="name" placeholder=""
+                                required minlength="1" maxlength="255">
                             <label class="" for="name">Keep Name</label>
                         </div>
                         <div class="form-floating mb-3 text-grey">
-                            <input v-model="keepData.img" type="url" class="form-control" id="img" placeholder="">
+                            <input v-model="keepData.img" type="url" class="form-control" id="img" placeholder=""
+                                required>
                             <label for="img">Keep Image Url</label>
                         </div>
                         <div class="form-floating mb-3 text-grey">
                             <textarea v-model="keepData.description" type="url" class="form-control textarea-height"
-                                id="name" placeholder=""></textarea>
+                                id="name" placeholder="" required></textarea>
                             <label for="name">Keep Description</label>
                         </div>
                         <div class="text-end">
