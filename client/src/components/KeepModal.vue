@@ -10,6 +10,8 @@ import { vaultsService } from '../services/VaultsService.js';
 const myVaults = computed(() => AppState.myVaults)
 const keep = computed(() => AppState.activeKeep)
 const account = computed(() => AppState.account)
+const titleString = computed(() => `navigate to ${keep.value.creator.name}'s page`)
+
 
 const selectedVaultData = ref({
     vaultId: 0,
@@ -73,8 +75,8 @@ function closeModal() {
                                     <i title="times viewed" class="mdi mdi-eye-outline"></i> {{ keep.views }}
                                     <i title="times kept" class="ms-2 mdi mdi-alpha-k-box-outline"></i> {{ keep.kept }}
                                 </p>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                    name="close modal" title="close modal"></button>
                             </div>
 
                             <div class="px-5">
@@ -90,12 +92,13 @@ function closeModal() {
                                             {{ vault.name }}<small v-if="vault.isPrivate == true">: Private</small>
                                         </option>
                                     </select>
-                                    <button v-if="account" type="submit"
-                                        class="btn btn-primary rounded-pill">Save</button>
+                                    <button v-if="account" type="submit" class="btn btn-primary rounded-pill"
+                                        name="save to vault" title="save to vault">Save</button>
                                 </form>
                                 <div>
                                     <RouterLink @click="closeModal()" class="d-flex align-items-center text-dark"
-                                        :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
+                                        :to="{ name: 'Profile', params: { profileId: keep.creatorId } }"
+                                        :title="titleString" name="navigate to user's page">
                                         <h5 class="mb-0 me-2">{{ keep.creator.name }}</h5>
                                         <img class="pfp" :src="keep.creator.picture" alt="">
                                     </RouterLink>

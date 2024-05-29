@@ -54,7 +54,7 @@ async function deleteVault(vaultId) {
 
 async function removeKeepFromVault(vaultKeepId) {
     try {
-        const confirmation = await Pop.confirm('are you sure you want to remove this keep from the vault?')
+        const confirmation = await Pop.confirm('Remove From Vault?', "Are you sure you want to remove this keep from the vault?", "remove", "question")
         if (confirmation == false) { return }
         await keepsService.removeKeepFromVault(vaultKeepId)
     }
@@ -97,7 +97,7 @@ onBeforeMount(() => {
                     </div>
                     <div class="col-4 text-end">
                         <p @click="deleteVault(vault.id)" v-if="account && account.id == vault.creatorId" role="button"
-                            title="Delete this Keep" class="fs-2 text-danger mdi mdi-delete-circle-outline"></p>
+                            title="Delete this Vault" class="fs-2 text-danger mdi mdi-delete-circle-outline"></p>
                     </div>
                 </div>
             </div>
@@ -110,8 +110,9 @@ onBeforeMount(() => {
             <div class="col-12 masonry p-0">
                 <div class="parent" v-for="keep in keeps" :key="keep.id">
                     <KeepCard class="card-margin drop-shadow" :keep="keep" />
-                    <button v-if="account?.id == vault.creatorId" @click="removeKeepFromVault(keep.vaultKeepId)"
-                        class="btn btn-danger child p-1"><i class="mdi mdi-close"></i></button>
+                    <p role="button" v-if="account?.id == vault.creatorId"
+                        @click="removeKeepFromVault(keep.vaultKeepId)" class="btn btn-danger child p-0 px-1"><i
+                            class="mdi mdi-close" name="remove keep from vault" title="remove keep from vault"></i></p>
                 </div>
             </div>
         </div>
