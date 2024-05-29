@@ -110,8 +110,8 @@ onBeforeMount(() => {
             <div class="col-12 masonry p-0">
                 <div class="parent" v-for="keep in keeps" :key="keep.id">
                     <KeepCard class="card-margin drop-shadow" :keep="keep" />
-                    <button @click="removeKeepFromVault(keep.vaultKeepId)" class="btn btn-danger child"><i
-                            class="mdi mdi-close"></i></button>
+                    <button v-if="account?.id == vault.creatorId" @click="removeKeepFromVault(keep.vaultKeepId)"
+                        class="btn btn-danger child p-1"><i class="mdi mdi-close"></i></button>
                 </div>
             </div>
         </div>

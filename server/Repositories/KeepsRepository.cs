@@ -135,7 +135,7 @@ public class KeepsRepository
         @"
         SELECT vaultKeeps.*, keeps.*, accounts.* FROM vaultKeeps
         JOIN keeps ON keeps.id = vaultKeeps.keepId
-        JOIN accounts ON accounts.id = vaultKeeps.creatorId
+        JOIN accounts ON accounts.id = keeps.creatorId
         WHERE vaultKeeps.vaultId = @vaultId;
         ";
 

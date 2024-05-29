@@ -9,6 +9,7 @@ import { vaultsService } from '../services/VaultsService.js';
 
 const myVaults = computed(() => AppState.myVaults)
 const keep = computed(() => AppState.activeKeep)
+const account = computed(() => AppState.account)
 
 const selectedVaultData = ref({
     vaultId: 0,
@@ -39,6 +40,10 @@ async function saveToVault() {
         Pop.error(error);
         console.error(error)
     }
+}
+
+function closeModal() {
+    Modal.getOrCreateInstance('#keepModal').hide()
 }
 </script>
 
@@ -79,15 +84,22 @@ async function saveToVault() {
 
                             <div class="d-flex align-items-center justify-content-between">
                                 <form @submit.prevent="saveToVault()" class="d-flex w-50">
-                                    <select v-model="selectedVaultData.vaultId" class="form-select me-2"
+                                    <select v-if="account" v-model="selectedVaultData.vaultId" class="form-select me-2"
                                         aria-label="Default select example" default="Add To Vault" required>
                                         <option v-for="vault in AppState.myVaults" :key="vault.id" :value="vault.id">
                                             {{ vault.name }}<small v-if="vault.isPrivate == true">: Private</small>
                                         </option>
                                     </select>
-                                    <button type="submit" class="btn btn-primary rounded-pill">Save</button>
+                                    <button v-if="account" type="submit"
+                                        class="btn btn-primary rounded-pill">Save</button>
                                 </form>
-                                <h6>{{ keep.creator.name }}</h6>
+                                <div>
+                                    <RouterLink @click="closeModal()" class="d-flex align-items-center text-dark"
+                                        :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
+                                        <h5 class="mb-0 me-2">{{ keep.creator.name }}</h5>
+                                        <img class="pfp" :src="keep.creator.picture" alt="">
+                                    </RouterLink>
+                                </div>
                             </div>
 
                         </div>
@@ -101,4 +113,13 @@ async function saveToVault() {
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.pfp {
+    height: 5dvh;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 0.25rem rgb(58, 58, 58));
+    object-fit: cover;
+    object-position: top;
+}
+</style>

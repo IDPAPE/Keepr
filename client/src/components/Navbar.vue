@@ -1,28 +1,22 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
+import { AppState } from '../AppState.js';
 
 const theme = ref(loadState('theme') || 'light')
+const account = computed(() => AppState.account)
 
 onMounted(() => {
   document.documentElement.setAttribute('data-bs-theme', theme.value)
 })
 
-function toggleTheme() {
-  theme.value = theme.value == 'light' ? 'dark' : 'light'
-  document.documentElement.setAttribute('data-bs-theme', theme.value)
-  saveState('theme', theme.value)
-}
-
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-sm navbar-light bg-color px-3 border-bottom">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
-      </div>
+      <h2 class="fs-1"><i class="mdi mdi-camera-iris"></i> Keepr</h2>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,11 +25,13 @@ function toggleTheme() {
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-          <p class="text-light mb-0 me-3 selectable" data-bs-toggle="modal" data-bs-target="#createKeepModal">Create
+          <p v-if="account" class="text-success mb-0 me-3 selectable" data-bs-toggle="modal"
+            data-bs-target="#createKeepModal">Create
             Keep</p>
         </li>
         <li>
-          <p class="text-light mb-0 selectable" data-bs-toggle="modal" data-bs-target="#createVaultModal">Create Vault
+          <p v-if="account" class="text-success mb-0 selectable" data-bs-toggle="modal"
+            data-bs-target="#createVaultModal">Create Vault
           </p>
         </li>
       </ul>
@@ -64,5 +60,9 @@ a:hover {
   nav {
     height: 64px;
   }
+}
+
+.bg-color {
+  background-color: #7D938A;
 }
 </style>

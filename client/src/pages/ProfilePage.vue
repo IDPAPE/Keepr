@@ -59,14 +59,14 @@ onMounted(() => {
 
 <template>
     <div class="about container">
-        <div v-if="profile && profileVaults && account">
+        <div v-if="profile && profileVaults">
             <section class="row text-center parent">
                 <img class="hero-img" :src="profile.coverImg" alt="">
                 <div class="child">
                     <img class="pfp" :src="profile.picture" alt="" />
                     <h1>{{ profile.name }}</h1>
                     <p>{{ profileVaults.length }} Vaults | {{ profileKeeps.length }} Keeps</p>
-                    <button v-if="profile.id == account.id" class="btn btn-success" data-bs-toggle="modal"
+                    <button v-if="profile.id == account?.id" class="btn btn-success" data-bs-toggle="modal"
                         data-bs-target="#EditAccountModal">Edit
                         Account</button>
                 </div>
@@ -85,7 +85,7 @@ onMounted(() => {
                     <hr />
                 </div>
 
-                <div v-if="profile.id == account.id" class="d-flex row">
+                <div v-if="profile.id == account?.id" class="d-flex row">
                     <div v-for="vault in myVaults" :key="vault.id" class="col-md-3 col-6 p-2">
                         <VaultCard :vault="vault" />
                     </div>
