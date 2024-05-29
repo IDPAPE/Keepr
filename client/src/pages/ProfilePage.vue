@@ -79,7 +79,7 @@ onMounted(() => {
                 </div>
             </section>
 
-            <section class="row">
+            <section class="row justify-content-center">
                 <div class="col-12 mb-3">
                     <h2 class="fs-1">Vaults</h2>
                     <hr />

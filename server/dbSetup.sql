@@ -61,3 +61,5 @@ GROUP BY (keeps.id)
 ORDER By keeps.createdAt;
 
 UPDATE keeps SET views = 33 WHERE keeps.id = 1;
+
+DELETE FROM vaults WHERE img = '';

@@ -6,6 +6,7 @@ import { Modal } from 'bootstrap';
 
 const props = defineProps({ keep: { type: Keep, required: true } })
 const imgUrl = computed(() => `url(${props.keep.img})`)
+const titleString = computed(() => `navigate to ${props.keep.creator.name}'s page`)
 
 function setActiveKeep(keepId) {
     keepsService.setActiveKeep(keepId)
@@ -30,7 +31,8 @@ onUnmounted(() => {
             <div class="child">
                 <div class="col px-1 text-light d-flex justify-content-between align-items-center">
                     <h4 class="fw-bold text-shadow">{{ keep.name }}</h4>
-                    <RouterLink @click.stop :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
+                    <RouterLink @click.stop :to="{ name: 'Profile', params: { profileId: keep.creatorId } }"
+                        :title="titleString" name="link to user's page">
                         <img @click="closeModal()" class="pfp d-none d-md-block" :src="keep.creator.picture" alt="">
                     </RouterLink>
                 </div>

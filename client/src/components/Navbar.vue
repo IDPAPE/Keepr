@@ -14,7 +14,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-sm navbar-light bg-color px-3 border-bottom">
+  <nav class="navbar navbar-expand-sm navbar-light bg-color px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <h2 class="fs-1"><i class="mdi mdi-camera-iris"></i> Keepr</h2>
     </router-link>
@@ -25,13 +25,13 @@ onMounted(() => {
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-          <p v-if="account" class="text-success mb-0 me-3 selectable" data-bs-toggle="modal"
-            data-bs-target="#createKeepModal">Create
+          <p v-if="account" class="text-light mb-0 me-4 selectable" data-bs-toggle="modal"
+            data-bs-target="#createKeepModal"><i class="mdi mdi-camera" title="keep"></i> Create
             Keep</p>
         </li>
         <li>
-          <p v-if="account" class="text-success mb-0 selectable" data-bs-toggle="modal"
-            data-bs-target="#createVaultModal">Create Vault
+          <p v-if="account" class="text-light mb-0 selectable" data-bs-toggle="modal"
+            data-bs-target="#createVaultModal"><i class="mdi mdi-safe" title="vault"></i> Create Vault
           </p>
         </li>
       </ul>
