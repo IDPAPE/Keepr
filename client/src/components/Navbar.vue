@@ -14,16 +14,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-sm navbar-light bg-color px-3">
+  <nav class="navbar navbar-expand-sm navbar-light bg-primary px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }" name="navigate to home" title="navigate to home">
-      <h2 class="fs-1"><i class="mdi mdi-camera-iris"></i> Keepr</h2>
+      <h2 class="fs-1 me-3 text-light text-shadow"><i class="mdi mdi-camera-iris"></i> Keepr</h2>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav me-auto fs-5 text-shadow">
         <li>
           <p v-if="account" class="text-light mb-0 me-4 selectable" data-bs-toggle="modal"
             data-bs-target="#createKeepModal"><i class="mdi mdi-camera" title="keep"></i> Create
@@ -31,7 +31,8 @@ onMounted(() => {
         </li>
         <li>
           <p v-if="account" class="text-light mb-0 selectable" data-bs-toggle="modal"
-            data-bs-target="#createVaultModal"><i class="mdi mdi-safe" title="vault"></i> Create Vault
+            data-bs-target="#createVaultModal">
+            <i class="mdi mdi-safe" title="vault"></i> Create Vault
           </p>
         </li>
       </ul>
@@ -44,6 +45,10 @@ onMounted(() => {
 <style scoped>
 a:hover {
   text-decoration: none;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 3px black;
 }
 
 .nav-link {

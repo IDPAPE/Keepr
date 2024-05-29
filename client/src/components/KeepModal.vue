@@ -73,9 +73,9 @@ function closeModal() {
                             <div class="d-flex align-items-center justify-content-between">
                                 <p @click="deleteKeep(keep.id)" v-if="keep.creatorId == AppState.account?.id"
                                     role="button" title="Delete this Keep"
-                                    class="fs-2 text-danger mdi mdi-delete-circle-outline"></p>
+                                    class="fs-2 m-0 text-danger mdi mdi-delete-circle-outline"></p>
                                 <p v-else></p>
-                                <p>
+                                <p class="mb-0">
                                     <i title="times viewed" class="mdi mdi-eye-outline"></i> {{ keep.views }}
                                     <i title="times kept" class="ms-2 mdi mdi-alpha-k-box-outline"></i> {{ keep.kept }}
                                 </p>

@@ -74,7 +74,7 @@ onBeforeMount(() => {
 
 <template>
     <div v-if="vault" class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center px-2 px-lg-0">
             <div class="col-md-4 rounded card d-flex drop-shadow mt-4">
                 <div class="row flex-grow-1"></div>
                 <div class="row text-light text-shadow text-center">
@@ -85,19 +85,21 @@ onBeforeMount(() => {
         </div>
         <div class="row justify-content-center mt-2">
             <div class="col-md-4 col-12">
-                <div class="row align-items-center">
-                    <div class="col-4">
-                        <p v-if="vault.isPrivate == true" class="fs-3 text-warning mdi mdi-lock"
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-4 col-2">
+                        <p v-if="vault.isPrivate == true" class="mb-0 fs-3 text-warning mdi mdi-lock"
                             title="vault is private">
                         </p>
                     </div>
-                    <div class="col-4">
-                        <h5 class="rounded rounded-pill bg-primary-subtle p-2 text-center">Keeps: {{ keeps.length }}
-                        </h5>
+                    <div class="col-lg-4 col-6">
+                        <p class="rounded rounded-pill bg-primary text-light text-shadow p-2 mb-0 fs-5s text-center">
+                            Keeps: {{
+                                keeps.length }}
+                        </p>
                     </div>
-                    <div class="col-4 text-end">
+                    <div class="col-lg-4 col-2 text-end">
                         <p @click="deleteVault(vault.id)" v-if="account && account.id == vault.creatorId" role="button"
-                            title="Delete this Vault" class="fs-2 text-danger mdi mdi-delete-circle-outline"></p>
+                            title="Delete this Vault" class="mb-0 fs-2 text-danger mdi mdi-delete-circle-outline"></p>
                     </div>
                 </div>
             </div>
@@ -107,7 +109,7 @@ onBeforeMount(() => {
                 <h2>Keeps</h2>
                 <hr />
             </div>
-            <div class="col-12 masonry p-0">
+            <div class="col-12 masonry p-lg-0">
                 <div class="parent" v-for="keep in keeps" :key="keep.id">
                     <KeepCard class="card-margin drop-shadow" :keep="keep" />
                     <p role="button" v-if="account?.id == vault.creatorId"
