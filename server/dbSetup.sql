@@ -62,4 +62,4 @@ ORDER By keeps.createdAt;
 
 UPDATE keeps SET views = 33 WHERE keeps.id = 1;
 
-DELETE FROM vaults WHERE img = '';
+DELETE FROM vaults WHERE;

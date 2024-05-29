@@ -18,6 +18,7 @@ class AccountService {
     const response = await api.put('/account', accountInfo)
     console.log('update account response', response.data)
     AppState.account = new Account(response.data)
+    AppState.activeProfile = new Account(response.data)
   }
   
 }

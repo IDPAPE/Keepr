@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import Pop from '../utils/Pop.js';
 import { accountService } from '../services/AccountService.js';
+import { Modal } from 'bootstrap';
 
 
 const accountInfoData = ref({
@@ -20,6 +21,7 @@ async function updateAccountInfo() {
             name: '',
             email: ''
         }
+        Modal.getOrCreateInstance('#EditAccountModal').hide()
         Pop.success('Account Info Updated Successfully')
     }
     catch (error) {

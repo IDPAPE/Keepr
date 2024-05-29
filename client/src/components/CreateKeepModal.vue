@@ -63,7 +63,7 @@ async function createKeep() {
                             <label for="name">Keep Description</label>
                         </div>
                         <div class="text-end">
-                            <button type="submit" class="btn btn-rounded rounded-pill btn-success">Create Keep</button>
+                            <button type="submit" class="btn btn-rounded rounded-pill btn-primary">Create Keep</button>
                         </div>
                     </form>
                 </div>

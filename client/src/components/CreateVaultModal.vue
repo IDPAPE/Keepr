@@ -77,7 +77,7 @@ function clearVaultData() {
                                 </div>
                             </div>
                             <div class="col-6 text-end">
-                                <button type="submit" class="btn btn-rounded rounded-pill btn-success">Create
+                                <button type="submit" class="btn btn-rounded rounded-pill btn-primary">Create
                                     Keep</button>
                             </div>
                         </div>

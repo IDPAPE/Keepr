@@ -34,9 +34,13 @@ async function deleteKeep(keepId) {
 async function saveToVault() {
     try {
         // console.log('asdf')
-        const confirmation = await Pop.confirm('Add this keep to vault?')
+        const confirmation = await Pop.confirm('Add this keep to vault?', "", "Add", "question")
         if (confirmation == false) { return }
         vaultsService.saveToVault(selectedVaultData.value)
+        selectedVaultData.value = {
+            vaultId: 0,
+            keepId: 0
+        }
     }
     catch (error) {
         Pop.error(error);

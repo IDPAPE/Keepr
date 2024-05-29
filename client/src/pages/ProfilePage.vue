@@ -66,16 +66,11 @@ onMounted(() => {
                     <img class="pfp" :src="profile.picture" alt="" />
                     <h1>{{ profile.name }}</h1>
                     <p>{{ profileVaults.length }} Vaults | {{ profileKeeps.length }} Keeps</p>
-                    <button v-if="profile.id == account?.id" class="btn btn-success" data-bs-toggle="modal"
+                    <button v-if="profile.id == account?.id" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#EditAccountModal">Edit
                         Account</button>
                 </div>
                 <div class="col">
-                    <!-- <img class="pfp" :src="account.picture" alt="" />
-          <h1>{{ account.name }}</h1>
-          <p>{{ myVaults.length }} Vaults | 0 Keeps</p>
-          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditAccountModal">Edit
-            Account</button> -->
                 </div>
             </section>
 
