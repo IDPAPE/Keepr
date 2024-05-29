@@ -74,6 +74,20 @@ public class KeepsController : ControllerBase
         }
     }
 
+    [HttpPut("{keepId}/viewed")]
+    public ActionResult<Keep> ViewKeep(int keepId)
+    {
+        try
+        {
+            Keep keep = _keepsService.ViewKeep(keepId);
+            return Ok(keep);
+        }
+        catch (Exception exception)
+        {
+            return BadRequest(exception.Message);
+        }
+    }
+
     [Authorize]
     [HttpDelete("{keepId}")]
     public async Task<ActionResult<string>> DeleteKeep(int keepId)

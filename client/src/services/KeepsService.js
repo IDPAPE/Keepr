@@ -17,7 +17,8 @@ class KeepsService{
     
     async setActiveKeep(keepId){
         const keep = AppState.activeKeeps.find(keep => keep.id == keepId)
-        AppState.activeKeep = keep
+        const viewedKeep = await api.put(`api/keeps/${keepId}/viewed`)
+        AppState.activeKeep = new Keep(viewedKeep.data)
     }
 
     async deleteKeep(keepId) {

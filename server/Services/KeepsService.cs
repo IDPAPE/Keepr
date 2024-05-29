@@ -53,6 +53,13 @@ public class KeepsService
         Keep updatedKeep = _repository.UpdateKeep(keepToUpdate);
         return updatedKeep;
     }
+    internal Keep ViewKeep(int keepId)
+    {
+        Keep keep = GetKeepById(keepId);
+        keep.Views += 1;
+        Keep viewedKeep = _repository.ViewKeep(keep);
+        return viewedKeep;
+    }
     internal string DeleteKeep(int keepId, string userId)
     {
         Keep keepToDelete = GetKeepById(keepId);
@@ -76,4 +83,5 @@ public class KeepsService
         List<Keep> keeps = _repository.GetUsersKeeps(profileId);
         return keeps;
     }
+
 }

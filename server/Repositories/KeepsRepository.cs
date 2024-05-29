@@ -1,4 +1,5 @@
 
+using System.Net.Http.Headers;
 using System.Runtime;
 
 namespace Keepr.Repositories;
@@ -86,6 +87,28 @@ public class KeepsRepository
 
         return keep;
     }
+
+    internal Keep ViewKeep(Keep viewedKeep)
+    {
+        string sql =
+        @"
+        UPDATE keeps SET
+        views = @views
+        WHERE keeps.id = @Id;
+
+        SELECT keeps.*, accounts.* FROM keeps
+        JOIN accounts ON accounts.id = keeps.creatorId
+        where keeps.id = @Id;
+        ";
+
+        Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
+        {
+            keep.Creator = profile;
+            return keep;
+        }, viewedKeep).FirstOrDefault();
+        return keep;
+    }
+
     internal void DeleteKeep(int keepId)
     {
         string sql = "DELETE FROM keeps WHERE keeps.id = @keepId;";
