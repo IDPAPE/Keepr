@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue';
-import { loadState, saveState } from '../utils/Store.js';
+import { loadState } from '../utils/Store.js';
 import Login from './Login.vue';
 import { AppState } from '../AppState.js';
 

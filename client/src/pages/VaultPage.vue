@@ -3,7 +3,7 @@ import { useRoute } from 'vue-router';
 import { router } from '../router.js';
 import Pop from '../utils/Pop.js';
 import { vaultsService } from '../services/VaultsService.js';
-import { computed, onBeforeMount, onMounted, onUnmounted, ref } from 'vue';
+import { computed, onBeforeMount } from 'vue';
 import { AppState } from '../AppState.js';
 import { keepsService } from '../services/KeepsService.js';
 import KeepCard from '../components/KeepCard.vue';

@@ -5,7 +5,6 @@ import { keepsService } from '../services/KeepsService.js';
 import { Modal } from 'bootstrap';
 
 const props = defineProps({ keep: { type: Keep, required: true } })
-const imgUrl = computed(() => `url(${props.keep.img})`)
 const titleString = computed(() => `navigate to ${props.keep.creator.name}'s page`)
 
 function setActiveKeep(keepId) {

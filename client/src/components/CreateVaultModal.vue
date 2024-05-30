@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import Pop from '../utils/Pop.js';
 import { vaultsService } from '../services/VaultsService.js';
 
@@ -52,19 +52,20 @@ function clearVaultData() {
                 <div class="modal-body">
                     <form @submit.prevent="createVault()">
                         <div class="form-floating mb-3 text-grey">
-                            <input v-model="vaultData.name" type="text" class="form-control " id="name" placeholder=""
-                                required minlength="1" maxlength="255">
-                            <label class="name" for="name">Vault Name</label>
+                            <input v-model="vaultData.name" type="text" class="form-control " id="vault-name"
+                                placeholder="" required minlength="1" maxlength="255">
+                            <label class="name" for="vault-name">Vault Name</label>
                         </div>
                         <div class="form-floating mb-3 text-grey">
-                            <input v-model="vaultData.img" type="url" class="form-control" id="img" placeholder=""
+                            <input v-model="vaultData.img" type="url" class="form-control" id="vault-img" placeholder=""
                                 required>
-                            <label for="img">Vault Image Url</label>
+                            <label for="vault-img">Vault Image Url</label>
                         </div>
                         <div class="form-floating mb-3 text-grey">
                             <textarea v-model="vaultData.description" type="url" class="form-control textarea-height"
-                                id="description" placeholder="" required minlength="1" maxlength="1000"></textarea>
-                            <label for="description">Vault Description</label>
+                                id="vault-description" placeholder="" required minlength="1"
+                                maxlength="1000"></textarea>
+                            <label for="vault-description">Vault Description</label>
                         </div>
                         <div class="row align-items-center">
                             <div class="col-6">
