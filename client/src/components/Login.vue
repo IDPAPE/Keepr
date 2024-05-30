@@ -16,7 +16,7 @@ async function logout() {
 
 <template>
   <span class="navbar-text">
-    <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login" v-if="!identity">
+    <button class="btn selectable text-info lighten-30 text-uppercase my-2 my-lg-0" @click="login" v-if="!identity">
       Login
     </button>
     <div v-else>
@@ -26,7 +26,8 @@ async function logout() {
             <img :src="account?.picture || identity?.picture" alt="account photo" height="40" class="pfp selectable" />
           </div>
         </div>
-        <div class="dropdown-menu dropdown-menu-sm-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
+        <div class="dropdown-menu dropdown-menu-sm-end text-light dropdown-menu-start p-0"
+          aria-labelledby="authDropdown">
           <div class="list-group">
             <router-link v-if="account" :to="{ name: 'Profile', params: { profileId: account.id } }">
               <div class="list-group-item dropdown-item list-group-item-action  rounded-top">

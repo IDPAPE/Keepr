@@ -16,7 +16,7 @@ onMounted(() => {
 <template>
   <nav class="navbar navbar-expand-sm navbar-light bg-primary px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }" name="navigate to home" title="navigate to home">
-      <h2 class="fs-1 me-3 text-light text-shadow kalam-bold"><i class="mdi mdi-camera-iris"></i> Keepr</h2>
+      <h2 class="fs-1 me-3 mb-0 text-light text-shadow kalam-bold"><i class="mdi mdi-camera-iris"></i> Keepr</h2>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">

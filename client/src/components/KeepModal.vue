@@ -83,8 +83,8 @@ function closeModal() {
                                     name="close modal" title="close modal"></button>
                             </div>
 
-                            <div class="px-lg-5 my-4 my-lg-0">
-                                <h2 class="kalam-bold">{{ keep.name }}</h2>
+                            <div class="px-lg-5 my-5 my-lg-5">
+                                <h2 class="kalam-bold text-primary">{{ keep.name }}</h2>
                                 <p class="text-start">{{ keep.description }}</p>
                             </div>
 

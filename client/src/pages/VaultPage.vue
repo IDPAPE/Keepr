@@ -85,20 +85,20 @@ onBeforeMount(() => {
         </div>
         <div class="row justify-content-center mt-2">
             <div class="col-md-4 col-12">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-lg-4 col-2">
+                <div class="row align-items-center justify-content-between mb-5 mb-lg-2">
+                    <div class=" col-2">
                         <p v-if="vault.isPrivate == true" class="mb-0 fs-3 text-warning mdi mdi-lock"
                             title="vault is private">
                         </p>
                     </div>
-                    <div class="col-lg-4 col-6">
+                    <div class=" col-6">
                         <p
                             class="rounded rounded-pill bg-primary text-light text-shadow p-2 mb-0 fs-5s text-center fw-bold">
                             Keeps: {{
                                 keeps.length }}
                         </p>
                     </div>
-                    <div class="col-lg-4 col-2 text-end">
+                    <div class=" col-2 text-end">
                         <p @click="deleteVault(vault.id)" v-if="account && account.id == vault.creatorId" role="button"
                             title="Delete this Vault" class="mb-0 fs-2 text-danger mdi mdi-delete-circle-outline"></p>
                     </div>
@@ -107,7 +107,7 @@ onBeforeMount(() => {
         </div>
         <div class="row">
             <div class="col-12">
-                <h2 class="kalam-regular fs-1">Keeps</h2>
+                <h2 class="kalam-regular fs-1 text-primary">Keeps</h2>
                 <hr />
             </div>
             <div class="col-12 masonry p-lg-0">

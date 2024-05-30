@@ -76,7 +76,7 @@ onMounted(() => {
 
             <section class="row justify-content-center">
                 <div class="col-12 mb-3">
-                    <h2 class="fs-1 kalam-regular">Vaults</h2>
+                    <h2 class="fs-1 kalam-regular text-primary">Vaults</h2>
                     <hr />
                 </div>
 
@@ -94,7 +94,7 @@ onMounted(() => {
 
             <section v-if="profileKeeps" class="row">
                 <div class="col-12 mb-3">
-                    <h2 class="fs-1 kalam-regular">Keeps</h2>
+                    <h2 class="fs-1 kalam-regular text-primary">Keeps</h2>
                     <hr />
                 </div>
                 <div class="col-12 masonry ">
