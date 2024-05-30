@@ -54,7 +54,7 @@ function clearVaultData() {
                         <div class="form-floating mb-3 text-grey">
                             <input v-model="vaultData.name" type="text" class="form-control " id="name" placeholder=""
                                 required minlength="1" maxlength="255">
-                            <label class="" for="name">Vault Name</label>
+                            <label class="name" for="name">Vault Name</label>
                         </div>
                         <div class="form-floating mb-3 text-grey">
                             <input v-model="vaultData.img" type="url" class="form-control" id="img" placeholder=""

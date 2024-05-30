@@ -63,9 +63,11 @@ onMounted(() => {
             <section class="row text-center parent">
                 <img class="hero-img" :src="profile.coverImg" alt="">
                 <div class="child">
-                    <img class="pfp" :src="profile.picture" alt="" />
+                    <img class="pfp border border-primary border-2" :src="profile.picture" alt="" />
                     <h1 class="kalam-bold">{{ profile.name }}</h1>
-                    <p>{{ profileVaults.length }} Vaults | {{ profileKeeps.length }} Keeps</p>
+                    <p v-if="profile.id == account?.id">{{ myVaults.length }} Vaults | {{ profileKeeps.length }}
+                        Keeps</p>
+                    <p v-else>{{ profileVaults.length }} Vaults | {{ profileKeeps.length }} Keeps</p>
                     <button v-if="profile.id == account?.id" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#EditAccountModal">Edit
                         Account</button>
@@ -144,7 +146,8 @@ onMounted(() => {
 .hero-img {
     object-fit: cover;
     object-position: center;
-    height: 40dvh;
+    min-height: 40dvh;
+    max-height: 40dvh;
     width: 100%;
 }
 
