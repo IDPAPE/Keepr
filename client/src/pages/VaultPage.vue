@@ -75,7 +75,7 @@ onBeforeMount(() => {
 <template>
     <div v-if="vault" class="container">
         <div class="row justify-content-center px-2 px-lg-0">
-            <div class="col-md-4 rounded card d-flex drop-shadow mt-4">
+            <div class="col-lg-4 rounded card d-flex drop-shadow mt-4">
                 <div class="row flex-grow-1"></div>
                 <div class="row text-light text-shadow text-center kalam-regular">
                     <h1>{{ vault.name }}</h1>

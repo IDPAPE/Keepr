@@ -63,8 +63,8 @@ function clearVaultData() {
                         </div>
                         <div class="form-floating mb-3 text-grey">
                             <textarea v-model="vaultData.description" type="url" class="form-control textarea-height"
-                                id="name" placeholder="" required minlength="1" maxlength="1000"></textarea>
-                            <label for="name">Vault Description</label>
+                                id="description" placeholder="" required minlength="1" maxlength="1000"></textarea>
+                            <label for="description">Vault Description</label>
                         </div>
                         <div class="row align-items-center">
                             <div class="col-6">

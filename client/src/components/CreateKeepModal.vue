@@ -59,8 +59,8 @@ async function createKeep() {
                         </div>
                         <div class="form-floating mb-3 text-grey">
                             <textarea v-model="keepData.description" type="url" class="form-control textarea-height"
-                                id="name" placeholder="" required></textarea>
-                            <label for="name">Keep Description</label>
+                                id="description" placeholder="" required></textarea>
+                            <label for="description">Keep Description</label>
                         </div>
                         <div class="text-end">
                             <button type="submit" class="btn btn-rounded rounded-pill btn-primary">Create Keep</button>
