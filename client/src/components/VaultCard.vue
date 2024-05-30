@@ -19,14 +19,13 @@ const imgUrl = `url(${props.vault.img})`
 
             </div>
             <div class="row ">
-                <div class="col m-1 rounded p-2 d-flex justify-content-between text-shadow">
+                <div
+                    class="col m-1 rounded p-2 d-flex justify-content-between align-items-center text-shadow kalam-regular">
                     <p class="fw-bold m-0 fs-5">
                         {{ vault.name }}
                     </p>
-                    <p>
-                        <i v-if="vault.isPrivate == true" class="text-warning fs-5 mdi mdi-lock"
-                            title="vault is private"></i>
-                    </p>
+                    <i v-if="vault.isPrivate == true" class="text-warning fs-5 mdi mdi-lock"
+                        title="vault is private"></i>
                 </div>
             </div>
         </div>

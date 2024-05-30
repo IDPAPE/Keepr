@@ -30,7 +30,7 @@ onUnmounted(() => {
             <img class="rounded p-0" :src="keep.img" alt="">
             <div class="child">
                 <div class="col px-1 text-light d-flex justify-content-between align-items-center">
-                    <p class="fw-bold text-shadow fs-4 mb-0">{{ keep.name }}</p>
+                    <p class="kalam-bold text-shadow fs-3 mb-0">{{ keep.name }}</p>
                     <RouterLink @click.stop :to="{ name: 'Profile', params: { profileId: keep.creatorId } }"
                         :title="titleString" name="link to user's page">
                         <img @click="closeModal()" class="pfp d-none d-md-block" :src="keep.creator.picture" alt="">

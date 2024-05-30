@@ -77,7 +77,7 @@ onBeforeMount(() => {
         <div class="row justify-content-center px-2 px-lg-0">
             <div class="col-md-4 rounded card d-flex drop-shadow mt-4">
                 <div class="row flex-grow-1"></div>
-                <div class="row text-light text-shadow text-center">
+                <div class="row text-light text-shadow text-center kalam-regular">
                     <h1>{{ vault.name }}</h1>
                     <p class="mb-1">by {{ vault.creator.name }}</p>
                 </div>
@@ -92,7 +92,8 @@ onBeforeMount(() => {
                         </p>
                     </div>
                     <div class="col-lg-4 col-6">
-                        <p class="rounded rounded-pill bg-primary text-light text-shadow p-2 mb-0 fs-5s text-center">
+                        <p
+                            class="rounded rounded-pill bg-primary text-light text-shadow p-2 mb-0 fs-5s text-center fw-bold">
                             Keeps: {{
                                 keeps.length }}
                         </p>
@@ -106,7 +107,7 @@ onBeforeMount(() => {
         </div>
         <div class="row">
             <div class="col-12">
-                <h2>Keeps</h2>
+                <h2 class="kalam-regular fs-1">Keeps</h2>
                 <hr />
             </div>
             <div class="col-12 masonry p-lg-0">
@@ -147,7 +148,7 @@ onBeforeMount(() => {
 }
 
 .text-shadow {
-    text-shadow: 2px 2px 4px black;
+    text-shadow: 1px 1px 4px black;
 }
 
 @media screen and (max-width: 992px) {

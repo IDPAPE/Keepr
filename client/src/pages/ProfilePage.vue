@@ -64,7 +64,7 @@ onMounted(() => {
                 <img class="hero-img" :src="profile.coverImg" alt="">
                 <div class="child">
                     <img class="pfp" :src="profile.picture" alt="" />
-                    <h1>{{ profile.name }}</h1>
+                    <h1 class="kalam-bold">{{ profile.name }}</h1>
                     <p>{{ profileVaults.length }} Vaults | {{ profileKeeps.length }} Keeps</p>
                     <button v-if="profile.id == account?.id" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#EditAccountModal">Edit
@@ -76,7 +76,7 @@ onMounted(() => {
 
             <section class="row justify-content-center">
                 <div class="col-12 mb-3">
-                    <h2 class="fs-1">Vaults</h2>
+                    <h2 class="fs-1 kalam-regular">Vaults</h2>
                     <hr />
                 </div>
 
@@ -94,7 +94,7 @@ onMounted(() => {
 
             <section v-if="profileKeeps" class="row">
                 <div class="col-12 mb-3">
-                    <h2 class="fs-1">Keeps</h2>
+                    <h2 class="fs-1 kalam-regular">Keeps</h2>
                     <hr />
                 </div>
                 <div class="col-12 masonry ">
