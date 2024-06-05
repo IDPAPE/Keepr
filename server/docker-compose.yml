@@ -1,9 +1,9 @@
 version: '3'
 services:
   app:
-    image: your-dockerhub-username/Keepr:latest
+    image: idpape/keepr:latest
     restart: unless-stopped
     env_file:
-      - Keepr-env
+      - keepr-env
     ports:
       - "7045:80"
