@@ -65,7 +65,7 @@ function closeModal() {
             <div class="modal-content">
                 <div v-if="AppState.activeKeep" class="modal-body container-fluid p-0">
                     <section class="row">
-                        <div class="col-lg-6 col-12">
+                        <div class="col-lg-6 col-12 p-0">
                             <img class=" keep-img img-rounded" :src="keep.img" alt="keep image">
                         </div>
                         <div class="col-lg-6 col-12 d-flex flex-column justify-content-between p-3 px-5 text-center">
@@ -103,7 +103,7 @@ function closeModal() {
                                     <RouterLink @click="closeModal()" class="d-flex align-items-center text-dark"
                                         :to="{ name: 'Profile', params: { profileId: keep.creatorId } }"
                                         :title="titleString" name="navigate to user's page">
-                                        <h5 class="mb-0 me-2">{{ keep.creator.name }}</h5>
+                                        <h5 class="mb-0 me-2 fs-6">{{ keep.creator.name }}</h5>
                                         <img class="pfp" :src="keep.creator.picture" alt="">
                                     </RouterLink>
                                 </div>
@@ -133,6 +133,7 @@ function closeModal() {
 .keep-img {
     object-fit: cover;
     object-position: center;
+    width: 100%;
     max-width: 100%;
     height: 100%;
 }
